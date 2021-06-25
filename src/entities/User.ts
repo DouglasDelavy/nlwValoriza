@@ -1,9 +1,15 @@
-import { Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn } from "typeorm";
+import { Exclude } from "class-transformer";
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  PrimaryColumn,
+  UpdateDateColumn,
+} from "typeorm";
 import { v4 as uuid } from "uuid";
 
 @Entity("users")
 class User {
-
   @PrimaryColumn()
   readonly id: string;
 
@@ -13,7 +19,11 @@ class User {
   @Column()
   email: string;
 
+  @Exclude()
   @Column()
+  password: string;
+
+  @Column({ type: "tinyint" })
   admin: boolean;
 
   @CreateDateColumn()
